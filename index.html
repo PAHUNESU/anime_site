@@ -14,18 +14,12 @@
       --accent-3: #ff58b3;
       --text: #f5f7ff;
       --muted: #b6bfdc;
-      --card: rgba(255,255,255,0.08);
       --card-border: rgba(255,255,255,0.14);
       --shadow: 0 24px 60px rgba(0,0,0,0.45);
     }
 
-    * {
-      box-sizing: border-box;
-    }
-
-    html {
-      scroll-behavior: smooth;
-    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
 
     body {
       margin: 0;
@@ -71,15 +65,8 @@
       opacity: 0.8;
     }
 
-    a {
-      color: inherit;
-      text-decoration: none;
-    }
-
-    .container {
-      width: min(1180px, calc(100% - 32px));
-      margin: 0 auto;
-    }
+    a { color: inherit; text-decoration: none; }
+    .container { width: min(1180px, calc(100% - 32px)); margin: 0 auto; }
 
     .topbar {
       position: sticky;
@@ -264,14 +251,14 @@
 
     .hero-card {
       position: relative;
-      width: min(430px, 92%);
+      width: min(520px, 96%);
       border-radius: 30px;
       background: linear-gradient(180deg, rgba(255,255,255,0.16), rgba(255,255,255,0.06));
       border: 1px solid rgba(255,255,255,0.18);
       box-shadow: var(--shadow);
       overflow: hidden;
       backdrop-filter: blur(16px);
-      transform: perspective(1000px) rotateY(-8deg) rotateX(4deg);
+      transform: perspective(1000px) rotateY(-6deg) rotateX(3deg);
     }
 
     .hero-card::before {
@@ -285,13 +272,9 @@
     .hero-card img {
       display: block;
       width: 100%;
-      height: 500px;
-      object-fit: contain;
-      padding: 22px;
-      background:
-        radial-gradient(circle at 30% 20%, rgba(46,211,255,0.12), transparent 30%),
-        radial-gradient(circle at 80% 20%, rgba(255,88,179,0.16), transparent 25%),
-        linear-gradient(180deg, rgba(10,10,20,0.65), rgba(18,20,38,0.82));
+      height: 420px;
+      object-fit: cover;
+      background: linear-gradient(180deg, rgba(10,10,20,0.65), rgba(18,20,38,0.82));
     }
 
     .hero-card-caption {
@@ -311,9 +294,7 @@
       backdrop-filter: blur(12px);
     }
 
-    .section {
-      padding: 28px 0 12px;
-    }
+    .section { padding: 28px 0 12px; }
 
     .section-title {
       display: flex;
@@ -403,15 +384,8 @@
       border-color: rgba(255,255,255,0.22);
     }
 
-    .character-card:hover::before {
-      opacity: 1;
-    }
-
-    .character-inner {
-      position: relative;
-      z-index: 1;
-      padding: 16px 16px 18px;
-    }
+    .character-card:hover::before { opacity: 1; }
+    .character-inner { position: relative; z-index: 1; padding: 16px 16px 18px; }
 
     .character-image-wrap {
       height: 310px;
@@ -434,25 +408,38 @@
       transition: transform 0.35s ease;
     }
 
-    .character-card:hover .character-image-wrap img {
-      transform: scale(1.06);
-    }
-
-    .character-meta {
-      padding-top: 16px;
-    }
-
-    .character-name {
-      margin: 0;
-      font-size: 1.15rem;
-      letter-spacing: 0.03em;
-    }
+    .character-card:hover .character-image-wrap img { transform: scale(1.06); }
+    .character-meta { padding-top: 16px; }
+    .character-name { margin: 0; font-size: 1.15rem; letter-spacing: 0.03em; }
 
     .character-desc {
       margin: 10px 0 0;
       color: var(--muted);
       line-height: 1.85;
       font-size: 0.95rem;
+    }
+
+    .profile-list {
+      margin: 14px 0 0;
+      padding: 0;
+      list-style: none;
+      display: grid;
+      gap: 6px;
+      color: #eef2ff;
+      font-size: 0.9rem;
+      line-height: 1.7;
+    }
+
+    .profile-list li {
+      display: grid;
+      grid-template-columns: 52px 1fr;
+      gap: 8px;
+      align-items: start;
+    }
+
+    .profile-list strong {
+      color: #d9b6ff;
+      font-weight: 700;
     }
 
     .character-footer {
@@ -472,13 +459,8 @@
       background: rgba(255,255,255,0.06);
     }
 
-    .cv-badge {
-      color: #fff;
-    }
-
-    .tap-badge {
-      color: #cad5ff;
-    }
+    .cv-badge { color: #fff; }
+    .tap-badge { color: #cad5ff; }
 
     .footer {
       padding: 48px 0 60px;
@@ -499,9 +481,7 @@
       z-index: 100;
     }
 
-    .modal.open {
-      display: flex;
-    }
+    .modal.open { display: flex; }
 
     .modal-box {
       width: min(980px, 100%);
@@ -564,16 +544,34 @@
       font-size: 1.2rem;
     }
 
-    .modal-title {
-      margin: 0;
-      font-size: clamp(1.8rem, 3vw, 2.5rem);
-    }
+    .modal-title { margin: 0; font-size: clamp(1.8rem, 3vw, 2.5rem); }
 
     .modal-sub {
       margin: 14px 0 0;
       color: var(--muted);
       line-height: 1.95;
       font-size: 1rem;
+    }
+
+    .modal-profile {
+      margin: 18px 0 0;
+      padding: 0;
+      list-style: none;
+      display: grid;
+      gap: 10px;
+      font-size: 0.97rem;
+      line-height: 1.8;
+    }
+
+    .modal-profile li {
+      display: grid;
+      grid-template-columns: 64px 1fr;
+      gap: 10px;
+      align-items: start;
+    }
+
+    .modal-profile strong {
+      color: #d9b6ff;
     }
 
     .modal-cv {
@@ -593,60 +591,24 @@
 
     @media (max-width: 920px) {
       .hero-grid,
-      .modal-content {
-        grid-template-columns: 1fr;
-      }
-
-      .hero {
-        padding-top: 54px;
-      }
-
-      .hero-visual {
-        min-height: auto;
-      }
-
-      .hero-card {
-        transform: none;
-      }
-
-      .modal-visual img {
-        height: 420px;
-      }
+      .modal-content { grid-template-columns: 1fr; }
+      .hero { padding-top: 54px; }
+      .hero-visual { min-height: auto; }
+      .hero-card { transform: none; }
+      .modal-visual img { height: 420px; }
     }
 
     @media (max-width: 640px) {
-      .topbar-inner {
-        flex-direction: column;
-        align-items: flex-start;
-      }
-
-      .nav {
-        width: 100%;
-      }
-
-      .nav a {
-        padding-left: 0;
-        padding-right: 10px;
-      }
-
-      .hero h1 {
-        font-size: 2.4rem;
-      }
-
+      .topbar-inner { flex-direction: column; align-items: flex-start; }
+      .nav { width: 100%; }
+      .nav a { padding-left: 0; padding-right: 10px; }
+      .hero h1 { font-size: 2.4rem; }
       .intro-panel,
       .story-panel,
-      .modal-content {
-        padding: 18px;
-      }
-
-      .character-image-wrap {
-        height: 280px;
-      }
-
+      .modal-content { padding: 18px; }
+      .character-image-wrap { height: 280px; }
       .hero-card img,
-      .modal-visual img {
-        height: 360px;
-      }
+      .modal-visual img { height: 360px; }
     }
   </style>
 </head>
@@ -686,10 +648,10 @@
           <div class="glow-orb orb-2"></div>
           <div class="glow-orb orb-3"></div>
           <div class="hero-card">
-            <img src="hone.png" alt="ホネ・シャークキャット" />
+            <img src="logo.jpg" alt="PAHUNESU URUMINASU" />
             <div class="hero-card-caption">
-              <span>主人公：ホネ・シャークキャット</span>
-              <span>CV：つくな</span>
+              <span>PAHUNESU URUMINASU</span>
+              <span>OFFICIAL LOGO</span>
             </div>
           </div>
         </div>
@@ -734,14 +696,22 @@
         </div>
 
         <div class="character-grid">
-          <article class="character-card" data-name="ホネ・シャークキャット" data-image="hone.png" data-cv="つくな" data-desc="性別年齢不明。本作の一応主人公。不幸体質でいつも運に恵まれない。ダウナーに見せかけた陰キャである。">
+          <article class="character-card" data-name="ホネ・シャークキャット" data-image="hone.png" data-cv="つくな" data-desc="性別不明。本作の一応主人公。不幸体質でいつも運に恵まれない。ダウナーに見せかけた陰キャである。" data-gender="？？？" data-age="25" data-ability="不幸体質" data-job="無職" data-like="金、美味いもの、よく笑う人" data-hate="労働、めんどくさい事、圧が強い人">
             <div class="character-inner">
               <div class="character-image-wrap">
                 <img src="hone.png" alt="ホネ・シャークキャット" />
               </div>
               <div class="character-meta">
                 <h3 class="character-name">ホネ・シャークキャット</h3>
-                <p class="character-desc">不幸体質でいつも運に恵まれない、本作の一応主人公。</p>
+                <p class="character-desc">性別不明。本作の一応主人公。不幸体質でいつも運に恵まれない。ダウナーに見せかけた陰キャである。</p>
+                <ul class="profile-list">
+                  <li><strong>性別</strong><span>？？？</span></li>
+                  <li><strong>年齢</strong><span>25</span></li>
+                  <li><strong>能力</strong><span>不幸体質</span></li>
+                  <li><strong>職業</strong><span>無職</span></li>
+                  <li><strong>好き</strong><span>金、美味いもの、よく笑う人</span></li>
+                  <li><strong>嫌い</strong><span>労働、めんどくさい事、圧が強い人</span></li>
+                </ul>
                 <div class="character-footer">
                   <span class="cv-badge">CV：つくな</span>
                   <span class="tap-badge">クリックで詳細</span>
@@ -750,14 +720,22 @@
             </div>
           </article>
 
-          <article class="character-card" data-name="ラガー・ラヴィ" data-image="lager.png" data-cv="つくな" data-desc="性別年齢不明。人の不幸が大好きなクソガキでホネくんのストーカー。自身をラガーちゃんと呼ばせる。">
+          <article class="character-card" data-name="ラガー・ラヴィ" data-image="lager.png" data-cv="つくな" data-desc="性別年齢不明。人の不幸が大好きなクソガキでホネくんのストーカー。自身をラガーちゃんと呼ばせる。" data-gender="？？？" data-age="？？？" data-ability="浮遊、不思議な錠剤" data-job="？？？" data-like="人の失敗、かわいいもの" data-hate="ピーマン、大切な人の死">
             <div class="character-inner">
               <div class="character-image-wrap">
                 <img src="lager.png" alt="ラガー・ラヴィ" />
               </div>
               <div class="character-meta">
                 <h3 class="character-name">ラガー・ラヴィ</h3>
-                <p class="character-desc">人の不幸が大好きなクソガキで、ホネくんのストーカー。</p>
+                <p class="character-desc">性別年齢不明。人の不幸が大好きなクソガキでホネくんのストーカー。自身をラガーちゃんと呼ばせる。</p>
+                <ul class="profile-list">
+                  <li><strong>性別</strong><span>？？？</span></li>
+                  <li><strong>年齢</strong><span>？？？</span></li>
+                  <li><strong>能力</strong><span>浮遊、不思議な錠剤</span></li>
+                  <li><strong>職業</strong><span>？？？</span></li>
+                  <li><strong>好き</strong><span>人の失敗、かわいいもの</span></li>
+                  <li><strong>嫌い</strong><span>ピーマン、大切な人の死</span></li>
+                </ul>
                 <div class="character-footer">
                   <span class="cv-badge">CV：つくな</span>
                   <span class="tap-badge">クリックで詳細</span>
@@ -766,14 +744,22 @@
             </div>
           </article>
 
-          <article class="character-card" data-name="大家さん" data-image="ooya.png" data-cv="シマエナガ" data-desc="年齢性別どころ名前も不明。わかっているのはみんなの暮らすアパートの大家であるという点のみ。蟻の人外である。">
+          <article class="character-card" data-name="大家さん" data-image="ooya.png" data-cv="シマエナガ" data-desc="年齢性別どころ名前も不明。わかっているのはみんなの暮らすアパートの大家であるという点のみ。蟻の人外である。" data-gender="？？？" data-age="？？？" data-ability="拡大縮小（物、人、空間のサイズを自由に変えることができる。）、万能（出来ない事が無い）" data-job="アパート経営、他様々なビジネス" data-like="人間（人外）観察、珈琲、読書、アパートの住民" data-hate="病、思想を強要する人">
             <div class="character-inner">
               <div class="character-image-wrap">
                 <img src="ooya.png" alt="大家さん" />
               </div>
               <div class="character-meta">
                 <h3 class="character-name">大家さん</h3>
-                <p class="character-desc">年齢も性別も名前も不明。蟻の人外で、アパートの大家。</p>
+                <p class="character-desc">年齢性別どころ名前も不明。わかっているのはみんなの暮らすアパートの大家であるという点のみ。蟻の人外である。</p>
+                <ul class="profile-list">
+                  <li><strong>性別</strong><span>？？？</span></li>
+                  <li><strong>年齢</strong><span>？？？</span></li>
+                  <li><strong>能力</strong><span>拡大縮小、万能</span></li>
+                  <li><strong>職業</strong><span>アパート経営、他様々なビジネス</span></li>
+                  <li><strong>好き</strong><span>人間（人外）観察、珈琲、読書、アパートの住民</span></li>
+                  <li><strong>嫌い</strong><span>病、思想を強要する人</span></li>
+                </ul>
                 <div class="character-footer">
                   <span class="cv-badge">CV：シマエナガ</span>
                   <span class="tap-badge">クリックで詳細</span>
@@ -782,14 +768,22 @@
             </div>
           </article>
 
-          <article class="character-card" data-name="タイタン・パニッシュ" data-image="titan.png" data-cv="ボブ" data-desc="ホネくんのお隣さんであり、彼女を一言で表現するならば魔性の女。問題行動ばかり起こす住民の中では幾分かまとも枠である。">
+          <article class="character-card" data-name="タイタン・パニッシュ" data-image="titan.png" data-cv="ボブ" data-desc="ホネくんのお隣さんであり、彼女を一言で表現するならば魔性の女。問題行動ばかり起こす住民の中では幾分かまとも枠である。" data-gender="女性" data-age="30" data-ability="巨大な身体、魔性の魅力、洗脳" data-job="？？？" data-like="メイク、オシャレ、スイーツ、カルーアミルク" data-hate="過去の自分、怒鳴る人">
             <div class="character-inner">
               <div class="character-image-wrap">
                 <img src="titan.png" alt="タイタン・パニッシュ" />
               </div>
               <div class="character-meta">
                 <h3 class="character-name">タイタン・パニッシュ</h3>
-                <p class="character-desc">魔性の女。問題行動だらけの住民の中では比較的まとも。</p>
+                <p class="character-desc">ホネくんのお隣さんであり、彼女を一言で表現するならば魔性の女。問題行動ばかり起こす住民の中では幾分かまとも枠である。</p>
+                <ul class="profile-list">
+                  <li><strong>性別</strong><span>女性</span></li>
+                  <li><strong>年齢</strong><span>30</span></li>
+                  <li><strong>能力</strong><span>巨大な身体、魔性の魅力、洗脳</span></li>
+                  <li><strong>職業</strong><span>？？？</span></li>
+                  <li><strong>好き</strong><span>メイク、オシャレ、スイーツ、カルーアミルク</span></li>
+                  <li><strong>嫌い</strong><span>過去の自分、怒鳴る人</span></li>
+                </ul>
                 <div class="character-footer">
                   <span class="cv-badge">CV：ボブ</span>
                   <span class="tap-badge">クリックで詳細</span>
@@ -798,14 +792,22 @@
             </div>
           </article>
 
-          <article class="character-card" data-name="シュガー・アイロニー" data-image="sugar.png" data-cv="まなと" data-desc="ホネくんの数少ない友人の一人で、ヤリ〇ンバンドマンのチャラい奴。中性的な顔立ちをしているが中身はガッツリと男である。">
+          <article class="character-card" data-name="シュガー・アイロニー" data-image="sugar.png" data-cv="まなと" data-desc="ホネくんの数少ない友人の一人で、ヤリ〇ンバンドマンのチャラい奴。中性的な顔立ちをしているが中身はガッツリと男である。" data-gender="男性" data-age="27" data-ability="歌、ギター演奏、コミュニケーション能力" data-job="バーテンダー、バンドマン" data-like="人間（人外）、ギター、服、性交渉" data-hate="痛いこと、おばけ">
             <div class="character-inner">
               <div class="character-image-wrap">
                 <img src="sugar.png" alt="シュガー・アイロニー" />
               </div>
               <div class="character-meta">
                 <h3 class="character-name">シュガー・アイロニー</h3>
-                <p class="character-desc">ホネくんの友人の一人。チャラいバンドマン。</p>
+                <p class="character-desc">ホネくんの数少ない友人の一人で、ヤリ〇ンバンドマンのチャラい奴。中性的な顔立ちをしているが中身はガッツリと男である。</p>
+                <ul class="profile-list">
+                  <li><strong>性別</strong><span>男性</span></li>
+                  <li><strong>年齢</strong><span>27</span></li>
+                  <li><strong>能力</strong><span>歌、ギター演奏、コミュニケーション能力</span></li>
+                  <li><strong>職業</strong><span>バーテンダー、バンドマン</span></li>
+                  <li><strong>好き</strong><span>人間（人外）、ギター, 服、性交渉</span></li>
+                  <li><strong>嫌い</strong><span>痛いこと、おばけ</span></li>
+                </ul>
                 <div class="character-footer">
                   <span class="cv-badge">CV：まなと</span>
                   <span class="tap-badge">クリックで詳細</span>
@@ -832,6 +834,7 @@
         <div class="modal-text">
           <h3 class="modal-title" id="modalTitle"></h3>
           <p class="modal-sub" id="modalDesc"></p>
+          <ul class="modal-profile" id="modalProfile"></ul>
           <div class="modal-cv" id="modalCv"></div>
         </div>
       </div>
@@ -844,6 +847,7 @@
     const modalTitle = document.getElementById('modalTitle');
     const modalDesc = document.getElementById('modalDesc');
     const modalCv = document.getElementById('modalCv');
+    const modalProfile = document.getElementById('modalProfile');
     const modalClose = document.getElementById('modalClose');
 
     document.querySelectorAll('.character-card').forEach(card => {
@@ -853,6 +857,14 @@
         modalTitle.textContent = card.dataset.name;
         modalDesc.textContent = card.dataset.desc;
         modalCv.textContent = 'CV：' + card.dataset.cv;
+        modalProfile.innerHTML = `
+          <li><strong>性別</strong><span>${card.dataset.gender}</span></li>
+          <li><strong>年齢</strong><span>${card.dataset.age}</span></li>
+          <li><strong>能力</strong><span>${card.dataset.ability}</span></li>
+          <li><strong>職業</strong><span>${card.dataset.job}</span></li>
+          <li><strong>好き</strong><span>${card.dataset.like}</span></li>
+          <li><strong>嫌い</strong><span>${card.dataset.hate}</span></li>
+        `;
         modal.classList.add('open');
         modal.setAttribute('aria-hidden', 'false');
       });
