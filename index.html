@@ -1,0 +1,877 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>パフネスルミナス公式ホームページ</title>
+  <style>
+    :root {
+      --bg-1: #070812;
+      --bg-2: #11152a;
+      --bg-3: #1b1140;
+      --accent: #8d5bff;
+      --accent-2: #2ed3ff;
+      --accent-3: #ff58b3;
+      --text: #f5f7ff;
+      --muted: #b6bfdc;
+      --card: rgba(255,255,255,0.08);
+      --card-border: rgba(255,255,255,0.14);
+      --shadow: 0 24px 60px rgba(0,0,0,0.45);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      font-family: "Segoe UI", "Hiragino Kaku Gothic ProN", "Yu Gothic", sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at 20% 15%, rgba(141, 91, 255, 0.28), transparent 22%),
+        radial-gradient(circle at 80% 10%, rgba(46, 211, 255, 0.18), transparent 20%),
+        radial-gradient(circle at 50% 50%, rgba(255, 88, 179, 0.08), transparent 26%),
+        linear-gradient(180deg, var(--bg-3) 0%, var(--bg-2) 35%, var(--bg-1) 100%);
+      min-height: 100vh;
+      overflow-x: hidden;
+      position: relative;
+    }
+
+    body::before,
+    body::after {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: -2;
+    }
+
+    body::before {
+      background-image:
+        radial-gradient(2px 2px at 12% 20%, rgba(255,255,255,0.75), transparent 55%),
+        radial-gradient(1.5px 1.5px at 40% 10%, rgba(255,255,255,0.8), transparent 55%),
+        radial-gradient(2px 2px at 75% 18%, rgba(255,255,255,0.65), transparent 55%),
+        radial-gradient(1.5px 1.5px at 84% 42%, rgba(255,255,255,0.75), transparent 55%),
+        radial-gradient(2px 2px at 63% 70%, rgba(255,255,255,0.7), transparent 55%),
+        radial-gradient(1.5px 1.5px at 27% 76%, rgba(255,255,255,0.8), transparent 55%),
+        radial-gradient(2px 2px at 90% 80%, rgba(255,255,255,0.6), transparent 55%),
+        radial-gradient(1.5px 1.5px at 10% 88%, rgba(255,255,255,0.8), transparent 55%);
+      opacity: 0.55;
+    }
+
+    body::after {
+      background:
+        radial-gradient(circle at center, rgba(141, 91, 255, 0.14), transparent 35%),
+        radial-gradient(circle at center, rgba(46, 211, 255, 0.08), transparent 55%);
+      filter: blur(20px);
+      opacity: 0.8;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .container {
+      width: min(1180px, calc(100% - 32px));
+      margin: 0 auto;
+    }
+
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 30;
+      backdrop-filter: blur(16px);
+      background: rgba(6, 8, 18, 0.55);
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .topbar-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 14px 0;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      font-size: 0.95rem;
+    }
+
+    .logo-mark {
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--accent), var(--accent-2));
+      box-shadow: 0 0 18px rgba(141, 91, 255, 0.9);
+    }
+
+    .nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .nav a {
+      padding: 8px 14px;
+      border-radius: 999px;
+      color: var(--muted);
+      transition: 0.25s ease;
+      font-size: 0.92rem;
+    }
+
+    .nav a:hover {
+      color: #fff;
+      background: rgba(255,255,255,0.08);
+    }
+
+    .hero {
+      position: relative;
+      padding: 84px 0 56px;
+      overflow: hidden;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 28px;
+      align-items: center;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 8px 14px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.12);
+      color: #dde4ff;
+      font-size: 0.9rem;
+      margin-bottom: 18px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.25);
+    }
+
+    .hero h1 {
+      margin: 0;
+      font-size: clamp(2.4rem, 6vw, 5rem);
+      line-height: 1.02;
+      letter-spacing: 0.03em;
+      text-shadow: 0 0 22px rgba(141, 91, 255, 0.35);
+    }
+
+    .hero .sub {
+      margin: 16px 0 0;
+      font-size: clamp(1rem, 2.1vw, 1.22rem);
+      color: #e9edff;
+      max-width: 48ch;
+      line-height: 1.9;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-top: 28px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      min-width: 156px;
+      padding: 14px 20px;
+      border-radius: 999px;
+      font-weight: 700;
+      transition: 0.25s ease;
+      border: 1px solid transparent;
+      cursor: pointer;
+    }
+
+    .btn-primary {
+      color: #fff;
+      background: linear-gradient(135deg, var(--accent), var(--accent-3));
+      box-shadow: 0 14px 32px rgba(141, 91, 255, 0.35);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px) scale(1.01);
+      box-shadow: 0 18px 38px rgba(141, 91, 255, 0.48);
+    }
+
+    .btn-secondary {
+      color: #fff;
+      background: rgba(255,255,255,0.06);
+      border-color: rgba(255,255,255,0.14);
+    }
+
+    .btn-secondary:hover {
+      background: rgba(255,255,255,0.1);
+      transform: translateY(-2px);
+    }
+
+    .hero-visual {
+      position: relative;
+      min-height: 420px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .glow-orb {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(18px);
+      opacity: 0.72;
+      animation: float 8s ease-in-out infinite;
+    }
+
+    .orb-1 {
+      width: 230px;
+      height: 230px;
+      background: rgba(141, 91, 255, 0.45);
+      top: 24px;
+      right: 10%;
+    }
+
+    .orb-2 {
+      width: 170px;
+      height: 170px;
+      background: rgba(46, 211, 255, 0.35);
+      bottom: 38px;
+      left: 14%;
+      animation-delay: -2s;
+    }
+
+    .orb-3 {
+      width: 120px;
+      height: 120px;
+      background: rgba(255, 88, 179, 0.35);
+      top: 50%;
+      left: 8%;
+      animation-delay: -4s;
+    }
+
+    .hero-card {
+      position: relative;
+      width: min(430px, 92%);
+      border-radius: 30px;
+      background: linear-gradient(180deg, rgba(255,255,255,0.16), rgba(255,255,255,0.06));
+      border: 1px solid rgba(255,255,255,0.18);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+      backdrop-filter: blur(16px);
+      transform: perspective(1000px) rotateY(-8deg) rotateX(4deg);
+    }
+
+    .hero-card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(255,255,255,0.18), transparent 38%, transparent 60%, rgba(46,211,255,0.08));
+      pointer-events: none;
+    }
+
+    .hero-card img {
+      display: block;
+      width: 100%;
+      height: 500px;
+      object-fit: contain;
+      padding: 22px;
+      background:
+        radial-gradient(circle at 30% 20%, rgba(46,211,255,0.12), transparent 30%),
+        radial-gradient(circle at 80% 20%, rgba(255,88,179,0.16), transparent 25%),
+        linear-gradient(180deg, rgba(10,10,20,0.65), rgba(18,20,38,0.82));
+    }
+
+    .hero-card-caption {
+      position: absolute;
+      left: 18px;
+      right: 18px;
+      bottom: 18px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      padding: 12px 14px;
+      border-radius: 18px;
+      background: rgba(8, 10, 20, 0.55);
+      border: 1px solid rgba(255,255,255,0.12);
+      font-size: 0.95rem;
+      backdrop-filter: blur(12px);
+    }
+
+    .section {
+      padding: 28px 0 12px;
+    }
+
+    .section-title {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 18px;
+    }
+
+    .section-title .bar {
+      width: 10px;
+      height: 30px;
+      border-radius: 999px;
+      background: linear-gradient(180deg, var(--accent), var(--accent-2));
+      box-shadow: 0 0 18px rgba(141, 91, 255, 0.55);
+    }
+
+    .section-title h2 {
+      margin: 0;
+      font-size: clamp(1.6rem, 3vw, 2.2rem);
+      letter-spacing: 0.04em;
+    }
+
+    .glass-panel {
+      background: linear-gradient(180deg, rgba(255,255,255,0.1), rgba(255,255,255,0.05));
+      border: 1px solid var(--card-border);
+      border-radius: 26px;
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(16px);
+    }
+
+    .intro-panel,
+    .story-panel {
+      padding: 26px 26px;
+      color: #eef2ff;
+      line-height: 2;
+      font-size: 1.04rem;
+    }
+
+    .story-panel {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .story-panel::after {
+      content: "";
+      position: absolute;
+      inset: auto -40px -40px auto;
+      width: 180px;
+      height: 180px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(255,88,179,0.26), transparent 62%);
+      filter: blur(8px);
+    }
+
+    .character-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 22px;
+      margin-top: 18px;
+    }
+
+    .character-card {
+      position: relative;
+      overflow: hidden;
+      border-radius: 24px;
+      background: linear-gradient(180deg, rgba(255,255,255,0.12), rgba(255,255,255,0.05));
+      border: 1px solid rgba(255,255,255,0.14);
+      box-shadow: var(--shadow);
+      transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+      cursor: pointer;
+      isolation: isolate;
+    }
+
+    .character-card::before {
+      content: "";
+      position: absolute;
+      inset: -1px;
+      background: linear-gradient(135deg, rgba(141,91,255,0.5), transparent 30%, transparent 65%, rgba(46,211,255,0.35));
+      opacity: 0;
+      z-index: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .character-card:hover {
+      transform: translateY(-8px) scale(1.015);
+      box-shadow: 0 28px 64px rgba(0,0,0,0.52);
+      border-color: rgba(255,255,255,0.22);
+    }
+
+    .character-card:hover::before {
+      opacity: 1;
+    }
+
+    .character-inner {
+      position: relative;
+      z-index: 1;
+      padding: 16px 16px 18px;
+    }
+
+    .character-image-wrap {
+      height: 310px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 18px;
+      background:
+        radial-gradient(circle at 50% 10%, rgba(46,211,255,0.14), transparent 35%),
+        radial-gradient(circle at 50% 90%, rgba(255,88,179,0.14), transparent 35%),
+        linear-gradient(180deg, rgba(14,16,30,0.72), rgba(18,20,36,0.95));
+      overflow: hidden;
+    }
+
+    .character-image-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      transform: scale(1.02);
+      transition: transform 0.35s ease;
+    }
+
+    .character-card:hover .character-image-wrap img {
+      transform: scale(1.06);
+    }
+
+    .character-meta {
+      padding-top: 16px;
+    }
+
+    .character-name {
+      margin: 0;
+      font-size: 1.15rem;
+      letter-spacing: 0.03em;
+    }
+
+    .character-desc {
+      margin: 10px 0 0;
+      color: var(--muted);
+      line-height: 1.85;
+      font-size: 0.95rem;
+    }
+
+    .character-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      margin-top: 14px;
+    }
+
+    .cv-badge,
+    .tap-badge {
+      border-radius: 999px;
+      padding: 7px 12px;
+      font-size: 0.82rem;
+      border: 1px solid rgba(255,255,255,0.12);
+      background: rgba(255,255,255,0.06);
+    }
+
+    .cv-badge {
+      color: #fff;
+    }
+
+    .tap-badge {
+      color: #cad5ff;
+    }
+
+    .footer {
+      padding: 48px 0 60px;
+      text-align: center;
+      color: #9ba7d0;
+      font-size: 0.92rem;
+    }
+
+    .modal {
+      position: fixed;
+      inset: 0;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 22px;
+      background: rgba(5, 8, 18, 0.8);
+      backdrop-filter: blur(14px);
+      z-index: 100;
+    }
+
+    .modal.open {
+      display: flex;
+    }
+
+    .modal-box {
+      width: min(980px, 100%);
+      max-height: calc(100vh - 44px);
+      overflow: auto;
+      border-radius: 28px;
+      background: linear-gradient(180deg, rgba(18, 20, 38, 0.95), rgba(9, 10, 18, 0.96));
+      border: 1px solid rgba(255,255,255,0.14);
+      box-shadow: 0 26px 80px rgba(0,0,0,0.58);
+    }
+
+    .modal-content {
+      display: grid;
+      grid-template-columns: 0.95fr 1.05fr;
+      gap: 22px;
+      padding: 22px;
+    }
+
+    .modal-visual {
+      min-height: 420px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 22px;
+      background:
+        radial-gradient(circle at 50% 12%, rgba(46,211,255,0.15), transparent 30%),
+        radial-gradient(circle at 50% 88%, rgba(255,88,179,0.15), transparent 26%),
+        linear-gradient(180deg, rgba(18,20,36,1), rgba(9,10,18,1));
+      overflow: hidden;
+    }
+
+    .modal-visual img {
+      width: 100%;
+      height: 520px;
+      object-fit: contain;
+    }
+
+    .modal-text {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 8px 4px;
+    }
+
+    .modal-close {
+      position: sticky;
+      top: 14px;
+      margin-left: auto;
+      margin-right: 14px;
+      margin-top: 14px;
+      width: 42px;
+      height: 42px;
+      display: grid;
+      place-items: center;
+      border: 0;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.08);
+      color: #fff;
+      cursor: pointer;
+      font-size: 1.2rem;
+    }
+
+    .modal-title {
+      margin: 0;
+      font-size: clamp(1.8rem, 3vw, 2.5rem);
+    }
+
+    .modal-sub {
+      margin: 14px 0 0;
+      color: var(--muted);
+      line-height: 1.95;
+      font-size: 1rem;
+    }
+
+    .modal-cv {
+      margin-top: 18px;
+      align-self: flex-start;
+      padding: 10px 14px;
+      border-radius: 999px;
+      background: linear-gradient(135deg, rgba(141,91,255,0.25), rgba(46,211,255,0.16));
+      border: 1px solid rgba(255,255,255,0.12);
+      font-weight: 700;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-14px); }
+    }
+
+    @media (max-width: 920px) {
+      .hero-grid,
+      .modal-content {
+        grid-template-columns: 1fr;
+      }
+
+      .hero {
+        padding-top: 54px;
+      }
+
+      .hero-visual {
+        min-height: auto;
+      }
+
+      .hero-card {
+        transform: none;
+      }
+
+      .modal-visual img {
+        height: 420px;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .topbar-inner {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .nav {
+        width: 100%;
+      }
+
+      .nav a {
+        padding-left: 0;
+        padding-right: 10px;
+      }
+
+      .hero h1 {
+        font-size: 2.4rem;
+      }
+
+      .intro-panel,
+      .story-panel,
+      .modal-content {
+        padding: 18px;
+      }
+
+      .character-image-wrap {
+        height: 280px;
+      }
+
+      .hero-card img,
+      .modal-visual img {
+        height: 360px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="container topbar-inner">
+      <a href="#top" class="logo">
+        <span class="logo-mark"></span>
+        <span>PUFFNESS LUMINOUS</span>
+      </a>
+      <nav class="nav">
+        <a href="#intro">作品紹介</a>
+        <a href="#story">ストーリー</a>
+        <a href="#characters">キャラクター</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <div class="container hero-grid">
+        <div>
+          <div class="eyebrow">人外アパート204号室</div>
+          <h1>パフネスルミナス<br />公式ホームページ</h1>
+          <p class="sub">
+            不幸体質の主人公「ホネくん」と、謎のストーカー「ラガー・ラヴィ」。
+            同じアパートに住む癖の強すぎる住民たちに振り回されながら、奇妙で騒がしい日常が幕を開ける。
+          </p>
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="#characters">キャラクターを見る</a>
+            <a class="btn btn-secondary" href="#story">ストーリーへ</a>
+          </div>
+        </div>
+
+        <div class="hero-visual">
+          <div class="glow-orb orb-1"></div>
+          <div class="glow-orb orb-2"></div>
+          <div class="glow-orb orb-3"></div>
+          <div class="hero-card">
+            <img src="hone.png" alt="ホネ・シャークキャット" />
+            <div class="hero-card-caption">
+              <span>主人公：ホネ・シャークキャット</span>
+              <span>CV：つくな</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="intro">
+      <div class="container">
+        <div class="section-title">
+          <span class="bar"></span>
+          <h2>作品紹介</h2>
+        </div>
+        <div class="glass-panel intro-panel">
+          <p>
+            <strong>人外アパート204号室</strong>は、怪しくて、騒がしくて、どこか笑える住民たちが暮らすアパートを舞台にした物語。
+            不幸体質のホネくんを中心に、ひと癖どころでは済まない住民たちとの関係が、トラブルまみれの日常をどんどん加速させていく。
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="story">
+      <div class="container">
+        <div class="section-title">
+          <span class="bar"></span>
+          <h2>ストーリー</h2>
+        </div>
+        <div class="glass-panel story-panel">
+          <p>
+            不幸体質の主人公「ホネくん」が、謎のストーカーに出会うところから物語は始まる。
+            そんな中、2人（※主にホネくん）は、同じアパートに住む住民たちが起こす様々なトラブルに次々と巻き込まれてゆく……。
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="characters">
+      <div class="container">
+        <div class="section-title">
+          <span class="bar"></span>
+          <h2>キャラクター</h2>
+        </div>
+
+        <div class="character-grid">
+          <article class="character-card" data-name="ホネ・シャークキャット" data-image="hone.png" data-cv="つくな" data-desc="性別年齢不明。本作の一応主人公。不幸体質でいつも運に恵まれない。ダウナーに見せかけた陰キャである。">
+            <div class="character-inner">
+              <div class="character-image-wrap">
+                <img src="hone.png" alt="ホネ・シャークキャット" />
+              </div>
+              <div class="character-meta">
+                <h3 class="character-name">ホネ・シャークキャット</h3>
+                <p class="character-desc">不幸体質でいつも運に恵まれない、本作の一応主人公。</p>
+                <div class="character-footer">
+                  <span class="cv-badge">CV：つくな</span>
+                  <span class="tap-badge">クリックで詳細</span>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <article class="character-card" data-name="ラガー・ラヴィ" data-image="lager.png" data-cv="つくな" data-desc="性別年齢不明。人の不幸が大好きなクソガキでホネくんのストーカー。自身をラガーちゃんと呼ばせる。">
+            <div class="character-inner">
+              <div class="character-image-wrap">
+                <img src="lager.png" alt="ラガー・ラヴィ" />
+              </div>
+              <div class="character-meta">
+                <h3 class="character-name">ラガー・ラヴィ</h3>
+                <p class="character-desc">人の不幸が大好きなクソガキで、ホネくんのストーカー。</p>
+                <div class="character-footer">
+                  <span class="cv-badge">CV：つくな</span>
+                  <span class="tap-badge">クリックで詳細</span>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <article class="character-card" data-name="大家さん" data-image="ooya.png" data-cv="シマエナガ" data-desc="年齢性別どころ名前も不明。わかっているのはみんなの暮らすアパートの大家であるという点のみ。蟻の人外である。">
+            <div class="character-inner">
+              <div class="character-image-wrap">
+                <img src="ooya.png" alt="大家さん" />
+              </div>
+              <div class="character-meta">
+                <h3 class="character-name">大家さん</h3>
+                <p class="character-desc">年齢も性別も名前も不明。蟻の人外で、アパートの大家。</p>
+                <div class="character-footer">
+                  <span class="cv-badge">CV：シマエナガ</span>
+                  <span class="tap-badge">クリックで詳細</span>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <article class="character-card" data-name="タイタン・パニッシュ" data-image="titan.png" data-cv="ボブ" data-desc="ホネくんのお隣さんであり、彼女を一言で表現するならば魔性の女。問題行動ばかり起こす住民の中では幾分かまとも枠である。">
+            <div class="character-inner">
+              <div class="character-image-wrap">
+                <img src="titan.png" alt="タイタン・パニッシュ" />
+              </div>
+              <div class="character-meta">
+                <h3 class="character-name">タイタン・パニッシュ</h3>
+                <p class="character-desc">魔性の女。問題行動だらけの住民の中では比較的まとも。</p>
+                <div class="character-footer">
+                  <span class="cv-badge">CV：ボブ</span>
+                  <span class="tap-badge">クリックで詳細</span>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <article class="character-card" data-name="シュガー・アイロニー" data-image="sugar.png" data-cv="まなと" data-desc="ホネくんの数少ない友人の一人で、ヤリ〇ンバンドマンのチャラい奴。中性的な顔立ちをしているが中身はガッツリと男である。">
+            <div class="character-inner">
+              <div class="character-image-wrap">
+                <img src="sugar.png" alt="シュガー・アイロニー" />
+              </div>
+              <div class="character-meta">
+                <h3 class="character-name">シュガー・アイロニー</h3>
+                <p class="character-desc">ホネくんの友人の一人。チャラいバンドマン。</p>
+                <div class="character-footer">
+                  <span class="cv-badge">CV：まなと</span>
+                  <span class="tap-badge">クリックで詳細</span>
+                </div>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container">© 2026 パフネスルミナス</div>
+  </footer>
+
+  <div class="modal" id="characterModal" aria-hidden="true">
+    <div class="modal-box">
+      <button class="modal-close" id="modalClose" aria-label="閉じる">✕</button>
+      <div class="modal-content">
+        <div class="modal-visual">
+          <img id="modalImage" src="" alt="" />
+        </div>
+        <div class="modal-text">
+          <h3 class="modal-title" id="modalTitle"></h3>
+          <p class="modal-sub" id="modalDesc"></p>
+          <div class="modal-cv" id="modalCv"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const modal = document.getElementById('characterModal');
+    const modalImage = document.getElementById('modalImage');
+    const modalTitle = document.getElementById('modalTitle');
+    const modalDesc = document.getElementById('modalDesc');
+    const modalCv = document.getElementById('modalCv');
+    const modalClose = document.getElementById('modalClose');
+
+    document.querySelectorAll('.character-card').forEach(card => {
+      card.addEventListener('click', () => {
+        modalImage.src = card.dataset.image;
+        modalImage.alt = card.dataset.name;
+        modalTitle.textContent = card.dataset.name;
+        modalDesc.textContent = card.dataset.desc;
+        modalCv.textContent = 'CV：' + card.dataset.cv;
+        modal.classList.add('open');
+        modal.setAttribute('aria-hidden', 'false');
+      });
+    });
+
+    function closeModal() {
+      modal.classList.remove('open');
+      modal.setAttribute('aria-hidden', 'true');
+    }
+
+    modalClose.addEventListener('click', closeModal);
+
+    modal.addEventListener('click', (event) => {
+      if (event.target === modal) closeModal();
+    });
+
+    window.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape') closeModal();
+    });
+  </script>
+</body>
+</html>
