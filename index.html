@@ -89,8 +89,8 @@
       display: flex;
       align-items: center;
       gap: 10px;
-      font-weight: 700;
-      letter-spacing: 0.06em;
+      font-weight: 800;
+      letter-spacing: 0.08em;
       font-size: 0.95rem;
     }
 
@@ -150,10 +150,28 @@
 
     .hero h1 {
       margin: 0;
-      font-size: clamp(2.4rem, 6vw, 5rem);
+      font-size: clamp(2.8rem, 6.4vw, 5.4rem);
       line-height: 1.02;
-      letter-spacing: 0.03em;
+      letter-spacing: 0.04em;
       text-shadow: 0 0 22px rgba(141, 91, 255, 0.35);
+    }
+
+    .hero-title-sub {
+      display: block;
+      margin-top: 16px;
+      font-size: clamp(1.15rem, 2.5vw, 2rem);
+      letter-spacing: 0.12em;
+      color: #cdd7ff;
+      opacity: 0.88;
+      font-weight: 700;
+    }
+
+    .hero-title-line {
+      display: inline-block;
+      width: min(420px, 80%);
+      height: 1px;
+      margin: 18px 0 2px;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.75), transparent);
     }
 
     .hero .sub {
@@ -347,7 +365,6 @@
       border: 1px solid rgba(255,255,255,0.14);
       box-shadow: var(--shadow);
       transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
-      cursor: pointer;
       isolation: isolate;
     }
 
@@ -402,8 +419,7 @@
       font-size: 0.95rem;
     }
 
-    .character-card .profile-list,
-    .character-card .character-footer {
+    .character-card .profile-list {
       display: none !important;
     }
 
@@ -435,20 +451,32 @@
       align-items: center;
       justify-content: space-between;
       gap: 10px;
-      margin-top: 14px;
+      margin-top: 18px;
     }
 
     .cv-badge,
-    .tap-badge {
+    .detail-btn {
       border-radius: 999px;
-      padding: 7px 12px;
+      padding: 8px 13px;
       font-size: 0.82rem;
-      border: 1px solid rgba(255,255,255,0.12);
-      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.16);
+      background: rgba(255,255,255,0.07);
+      color: #fff;
     }
 
-    .cv-badge { color: #fff; }
-    .tap-badge { color: #cad5ff; }
+    .detail-btn {
+      font-family: inherit;
+      cursor: pointer;
+      color: #cad5ff;
+      transition: 0.22s ease;
+    }
+
+    .detail-btn:hover {
+      color: #fff;
+      background: linear-gradient(135deg, rgba(141,91,255,0.45), rgba(255,88,179,0.28));
+      box-shadow: 0 0 18px rgba(141,91,255,0.35);
+      transform: translateY(-1px);
+    }
 
     .footer {
       padding: 48px 0 60px;
@@ -479,6 +507,8 @@
       background: linear-gradient(180deg, rgba(18, 20, 38, 0.95), rgba(9, 10, 18, 0.96));
       border: 1px solid rgba(255,255,255,0.14);
       box-shadow: 0 26px 80px rgba(0,0,0,0.58);
+      transform: translateY(12px) scale(0.98);
+      animation: modalIn 0.22s ease forwards;
     }
 
     .modal-content {
@@ -532,6 +562,7 @@
       font-size: 1.2rem;
     }
 
+    .modal-close:hover { background: rgba(255,255,255,0.14); }
     .modal-title { margin: 0; font-size: clamp(1.8rem, 3vw, 2.5rem); }
 
     .modal-sub {
@@ -558,9 +589,7 @@
       align-items: start;
     }
 
-    .modal-profile strong {
-      color: #d9b6ff;
-    }
+    .modal-profile strong { color: #d9b6ff; }
 
     .modal-cv {
       margin-top: 18px;
@@ -577,6 +606,10 @@
       50% { transform: translateY(-14px); }
     }
 
+    @keyframes modalIn {
+      to { transform: translateY(0) scale(1); }
+    }
+
     @media (max-width: 920px) {
       .hero-grid,
       .modal-content { grid-template-columns: 1fr; }
@@ -590,7 +623,8 @@
       .topbar-inner { flex-direction: column; align-items: flex-start; }
       .nav { width: 100%; }
       .nav a { padding-left: 0; padding-right: 10px; }
-      .hero h1 { font-size: 2.4rem; }
+      .hero h1 { font-size: 2.7rem; }
+      .hero-title-sub { font-size: 1.2rem; }
       .intro-panel,
       .story-panel,
       .modal-content { padding: 18px; }
@@ -620,7 +654,11 @@
       <div class="container hero-grid">
         <div>
           <div class="eyebrow">人外アパート204号室</div>
-          <h1>パフネスルミナス<br />公式ホームページ</h1>
+          <h1>
+            パフネスルミナス
+            <span class="hero-title-line"></span>
+            <span class="hero-title-sub">人外アパート204号室</span>
+          </h1>
           <p class="sub">
             不幸体質の主人公「ホネくん」と、謎のストーカー「ラガー・ラヴィ」。
             同じアパートに住む癖の強すぎる住民たちに振り回されながら、奇妙で騒がしい日常が幕を開ける。
@@ -682,120 +720,60 @@
         <div class="character-grid">
           <article class="character-card" data-name="ホネ・シャークキャット" data-image="hone.png" data-cv="つくな" data-desc="性別不明。本作の一応主人公。不幸体質でいつも運に恵まれない。ダウナーに見せかけた陰キャである。" data-gender="？？？" data-age="25" data-ability="不幸体質" data-job="無職" data-like="金、美味いもの、よく笑う人" data-hate="労働、めんどくさい事、圧が強い人">
             <div class="character-inner">
-              <div class="character-image-wrap">
-                <img src="hone.png" alt="ホネ・シャークキャット" />
-              </div>
+              <div class="character-image-wrap"><img src="hone.png" alt="ホネ・シャークキャット" /></div>
               <div class="character-meta">
                 <h3 class="character-name">ホネ・シャークキャット</h3>
                 <p class="character-desc">性別不明。本作の一応主人公。不幸体質でいつも運に恵まれない。ダウナーに見せかけた陰キャである。</p>
-                <ul class="profile-list">
-                  <li><strong>性別</strong><span>？？？</span></li>
-                  <li><strong>年齢</strong><span>25</span></li>
-                  <li><strong>能力</strong><span>不幸体質</span></li>
-                  <li><strong>職業</strong><span>無職</span></li>
-                  <li><strong>好き</strong><span>金、美味いもの、よく笑う人</span></li>
-                  <li><strong>嫌い</strong><span>労働、めんどくさい事、圧が強い人</span></li>
-                </ul>
-                <div class="character-footer">
-                  <span class="cv-badge">CV：つくな</span>
-                  <span class="tap-badge">クリックで詳細</span>
-                </div>
+                <ul class="profile-list"><li><strong>性別</strong><span>？？？</span></li><li><strong>年齢</strong><span>25</span></li><li><strong>能力</strong><span>不幸体質</span></li><li><strong>職業</strong><span>無職</span></li><li><strong>好き</strong><span>金、美味いもの、よく笑う人</span></li><li><strong>嫌い</strong><span>労働、めんどくさい事、圧が強い人</span></li></ul>
+                <div class="character-footer"><span class="cv-badge">CV：つくな</span><button class="detail-btn" type="button">詳細を見る</button></div>
               </div>
             </div>
           </article>
 
           <article class="character-card" data-name="ラガー・ラヴィ" data-image="lager.png" data-cv="つくな" data-desc="性別年齢不明。人の不幸が大好きなクソガキでホネくんのストーカー。自身をラガーちゃんと呼ばせる。" data-gender="？？？" data-age="？？？" data-ability="浮遊、不思議な錠剤" data-job="？？？" data-like="人の失敗、かわいいもの" data-hate="ピーマン、大切な人の死">
             <div class="character-inner">
-              <div class="character-image-wrap">
-                <img src="lager.png" alt="ラガー・ラヴィ" />
-              </div>
+              <div class="character-image-wrap"><img src="lager.png" alt="ラガー・ラヴィ" /></div>
               <div class="character-meta">
                 <h3 class="character-name">ラガー・ラヴィ</h3>
                 <p class="character-desc">性別年齢不明。人の不幸が大好きなクソガキでホネくんのストーカー。自身をラガーちゃんと呼ばせる。</p>
-                <ul class="profile-list">
-                  <li><strong>性別</strong><span>？？？</span></li>
-                  <li><strong>年齢</strong><span>？？？</span></li>
-                  <li><strong>能力</strong><span>浮遊、不思議な錠剤</span></li>
-                  <li><strong>職業</strong><span>？？？</span></li>
-                  <li><strong>好き</strong><span>人の失敗、かわいいもの</span></li>
-                  <li><strong>嫌い</strong><span>ピーマン、大切な人の死</span></li>
-                </ul>
-                <div class="character-footer">
-                  <span class="cv-badge">CV：つくな</span>
-                  <span class="tap-badge">クリックで詳細</span>
-                </div>
+                <ul class="profile-list"><li><strong>性別</strong><span>？？？</span></li><li><strong>年齢</strong><span>？？？</span></li><li><strong>能力</strong><span>浮遊、不思議な錠剤</span></li><li><strong>職業</strong><span>？？？</span></li><li><strong>好き</strong><span>人の失敗、かわいいもの</span></li><li><strong>嫌い</strong><span>ピーマン、大切な人の死</span></li></ul>
+                <div class="character-footer"><span class="cv-badge">CV：つくな</span><button class="detail-btn" type="button">詳細を見る</button></div>
               </div>
             </div>
           </article>
 
           <article class="character-card" data-name="大家さん" data-image="ooya.png" data-cv="シマエナガ" data-desc="年齢性別どころ名前も不明。わかっているのはみんなの暮らすアパートの大家であるという点のみ。蟻の人外である。" data-gender="？？？" data-age="？？？" data-ability="拡大縮小（物、人、空間のサイズを自由に変えることができる。）、万能（出来ない事が無い）" data-job="アパート経営、他様々なビジネス" data-like="人間（人外）観察、珈琲、読書、アパートの住民" data-hate="病、思想を強要する人">
             <div class="character-inner">
-              <div class="character-image-wrap">
-                <img src="ooya.png" alt="大家さん" />
-              </div>
+              <div class="character-image-wrap"><img src="ooya.png" alt="大家さん" /></div>
               <div class="character-meta">
                 <h3 class="character-name">大家さん</h3>
                 <p class="character-desc">年齢性別どころ名前も不明。わかっているのはみんなの暮らすアパートの大家であるという点のみ。蟻の人外である。</p>
-                <ul class="profile-list">
-                  <li><strong>性別</strong><span>？？？</span></li>
-                  <li><strong>年齢</strong><span>？？？</span></li>
-                  <li><strong>能力</strong><span>拡大縮小、万能</span></li>
-                  <li><strong>職業</strong><span>アパート経営、他様々なビジネス</span></li>
-                  <li><strong>好き</strong><span>人間（人外）観察、珈琲、読書、アパートの住民</span></li>
-                  <li><strong>嫌い</strong><span>病、思想を強要する人</span></li>
-                </ul>
-                <div class="character-footer">
-                  <span class="cv-badge">CV：シマエナガ</span>
-                  <span class="tap-badge">クリックで詳細</span>
-                </div>
+                <ul class="profile-list"><li><strong>性別</strong><span>？？？</span></li><li><strong>年齢</strong><span>？？？</span></li><li><strong>能力</strong><span>拡大縮小、万能</span></li><li><strong>職業</strong><span>アパート経営、他様々なビジネス</span></li><li><strong>好き</strong><span>人間（人外）観察、珈琲、読書、アパートの住民</span></li><li><strong>嫌い</strong><span>病、思想を強要する人</span></li></ul>
+                <div class="character-footer"><span class="cv-badge">CV：シマエナガ</span><button class="detail-btn" type="button">詳細を見る</button></div>
               </div>
             </div>
           </article>
 
           <article class="character-card" data-name="タイタン・パニッシュ" data-image="titan.png" data-cv="ボブ" data-desc="ホネくんのお隣さんであり、彼女を一言で表現するならば魔性の女。問題行動ばかり起こす住民の中では幾分かまとも枠である。" data-gender="女性" data-age="30" data-ability="巨大な身体、魔性の魅力、洗脳" data-job="？？？" data-like="メイク、オシャレ、スイーツ、カルーアミルク" data-hate="過去の自分、怒鳴る人">
             <div class="character-inner">
-              <div class="character-image-wrap">
-                <img src="titan.png" alt="タイタン・パニッシュ" />
-              </div>
+              <div class="character-image-wrap"><img src="titan.png" alt="タイタン・パニッシュ" /></div>
               <div class="character-meta">
                 <h3 class="character-name">タイタン・パニッシュ</h3>
                 <p class="character-desc">ホネくんのお隣さんであり、彼女を一言で表現するならば魔性の女。問題行動ばかり起こす住民の中では幾分かまとも枠である。</p>
-                <ul class="profile-list">
-                  <li><strong>性別</strong><span>女性</span></li>
-                  <li><strong>年齢</strong><span>30</span></li>
-                  <li><strong>能力</strong><span>巨大な身体、魔性の魅力、洗脳</span></li>
-                  <li><strong>職業</strong><span>？？？</span></li>
-                  <li><strong>好き</strong><span>メイク、オシャレ、スイーツ、カルーアミルク</span></li>
-                  <li><strong>嫌い</strong><span>過去の自分、怒鳴る人</span></li>
-                </ul>
-                <div class="character-footer">
-                  <span class="cv-badge">CV：ボブ</span>
-                  <span class="tap-badge">クリックで詳細</span>
-                </div>
+                <ul class="profile-list"><li><strong>性別</strong><span>女性</span></li><li><strong>年齢</strong><span>30</span></li><li><strong>能力</strong><span>巨大な身体、魔性の魅力、洗脳</span></li><li><strong>職業</strong><span>？？？</span></li><li><strong>好き</strong><span>メイク、オシャレ、スイーツ、カルーアミルク</span></li><li><strong>嫌い</strong><span>過去の自分、怒鳴る人</span></li></ul>
+                <div class="character-footer"><span class="cv-badge">CV：ボブ</span><button class="detail-btn" type="button">詳細を見る</button></div>
               </div>
             </div>
           </article>
 
           <article class="character-card" data-name="シュガー・アイロニー" data-image="sugar.png" data-cv="まなと" data-desc="ホネくんの数少ない友人の一人で、ヤリ〇ンバンドマンのチャラい奴。中性的な顔立ちをしているが中身はガッツリと男である。" data-gender="男性" data-age="27" data-ability="歌、ギター演奏、コミュニケーション能力" data-job="バーテンダー、バンドマン" data-like="人間（人外）、ギター、服、性交渉" data-hate="痛いこと、おばけ">
             <div class="character-inner">
-              <div class="character-image-wrap">
-                <img src="sugar.png" alt="シュガー・アイロニー" />
-              </div>
+              <div class="character-image-wrap"><img src="sugar.png" alt="シュガー・アイロニー" /></div>
               <div class="character-meta">
                 <h3 class="character-name">シュガー・アイロニー</h3>
                 <p class="character-desc">ホネくんの数少ない友人の一人で、ヤリ〇ンバンドマンのチャラい奴。中性的な顔立ちをしているが中身はガッツリと男である。</p>
-                <ul class="profile-list">
-                  <li><strong>性別</strong><span>男性</span></li>
-                  <li><strong>年齢</strong><span>27</span></li>
-                  <li><strong>能力</strong><span>歌、ギター演奏、コミュニケーション能力</span></li>
-                  <li><strong>職業</strong><span>バーテンダー、バンドマン</span></li>
-                  <li><strong>好き</strong><span>人間（人外）、ギター、服、性交渉</span></li>
-                  <li><strong>嫌い</strong><span>痛いこと、おばけ</span></li>
-                </ul>
-                <div class="character-footer">
-                  <span class="cv-badge">CV：まなと</span>
-                  <span class="tap-badge">クリックで詳細</span>
-                </div>
+                <ul class="profile-list"><li><strong>性別</strong><span>男性</span></li><li><strong>年齢</strong><span>27</span></li><li><strong>能力</strong><span>歌、ギター演奏、コミュニケーション能力</span></li><li><strong>職業</strong><span>バーテンダー、バンドマン</span></li><li><strong>好き</strong><span>人間（人外）、ギター、服、性交渉</span></li><li><strong>嫌い</strong><span>痛いこと、おばけ</span></li></ul>
+                <div class="character-footer"><span class="cv-badge">CV：まなと</span><button class="detail-btn" type="button">詳細を見る</button></div>
               </div>
             </div>
           </article>
@@ -804,17 +782,13 @@
     </section>
   </main>
 
-  <footer class="footer">
-    <div class="container">© 2026 パフネスルミナス</div>
-  </footer>
+  <footer class="footer"><div class="container">© 2026 PAHUNESU URUMINASU</div></footer>
 
   <div class="modal" id="characterModal" aria-hidden="true">
     <div class="modal-box">
       <button class="modal-close" id="modalClose" aria-label="閉じる">✕</button>
       <div class="modal-content">
-        <div class="modal-visual">
-          <img id="modalImage" src="" alt="" />
-        </div>
+        <div class="modal-visual"><img id="modalImage" src="" alt="" /></div>
         <div class="modal-text">
           <h3 class="modal-title" id="modalTitle"></h3>
           <p class="modal-sub" id="modalDesc"></p>
@@ -834,23 +808,29 @@
     const modalProfile = document.getElementById('modalProfile');
     const modalClose = document.getElementById('modalClose');
 
-    document.querySelectorAll('.character-card').forEach(card => {
-      card.addEventListener('click', () => {
-        modalImage.src = card.dataset.image;
-        modalImage.alt = card.dataset.name;
-        modalTitle.textContent = card.dataset.name;
-        modalDesc.textContent = card.dataset.desc;
-        modalCv.textContent = 'CV：' + card.dataset.cv;
-        modalProfile.innerHTML = `
-          <li><strong>性別</strong><span>${card.dataset.gender}</span></li>
-          <li><strong>年齢</strong><span>${card.dataset.age}</span></li>
-          <li><strong>能力</strong><span>${card.dataset.ability}</span></li>
-          <li><strong>職業</strong><span>${card.dataset.job}</span></li>
-          <li><strong>好き</strong><span>${card.dataset.like}</span></li>
-          <li><strong>嫌い</strong><span>${card.dataset.hate}</span></li>
-        `;
-        modal.classList.add('open');
-        modal.setAttribute('aria-hidden', 'false');
+    function openCharacterModal(card) {
+      modalImage.src = card.dataset.image;
+      modalImage.alt = card.dataset.name;
+      modalTitle.textContent = card.dataset.name;
+      modalDesc.textContent = card.dataset.desc;
+      modalCv.textContent = 'CV：' + card.dataset.cv;
+      modalProfile.innerHTML = `
+        <li><strong>性別</strong><span>${card.dataset.gender}</span></li>
+        <li><strong>年齢</strong><span>${card.dataset.age}</span></li>
+        <li><strong>能力</strong><span>${card.dataset.ability}</span></li>
+        <li><strong>職業</strong><span>${card.dataset.job}</span></li>
+        <li><strong>好き</strong><span>${card.dataset.like}</span></li>
+        <li><strong>嫌い</strong><span>${card.dataset.hate}</span></li>
+      `;
+      modal.classList.add('open');
+      modal.setAttribute('aria-hidden', 'false');
+    }
+
+    document.querySelectorAll('.detail-btn').forEach(button => {
+      button.addEventListener('click', (event) => {
+        event.stopPropagation();
+        const card = button.closest('.character-card');
+        openCharacterModal(card);
       });
     });
 
@@ -860,14 +840,8 @@
     }
 
     modalClose.addEventListener('click', closeModal);
-
-    modal.addEventListener('click', (event) => {
-      if (event.target === modal) closeModal();
-    });
-
-    window.addEventListener('keydown', (event) => {
-      if (event.key === 'Escape') closeModal();
-    });
+    modal.addEventListener('click', (event) => { if (event.target === modal) closeModal(); });
+    window.addEventListener('keydown', (event) => { if (event.key === 'Escape') closeModal(); });
   </script>
 </body>
 </html>
