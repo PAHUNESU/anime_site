@@ -168,17 +168,24 @@
 
     .hero-title-main {
       display: block;
-      width: max-content;
+      width: fit-content;
       max-width: 100%;
-      font-size: clamp(2.15rem, 3.75vw, 3.45rem);
-      letter-spacing: 0.01em;
+      font-family: "Yu Mincho", "Hiragino Mincho ProN", "Yu Gothic", serif;
+      font-size: clamp(2.55rem, 4.2vw, 4.05rem);
+      letter-spacing: 0.08em;
       font-weight: 900;
-      white-space: nowrap !important;
+      line-height: 1.05;
+      white-space: normal !important;
       word-break: keep-all !important;
       overflow-wrap: normal !important;
       text-shadow:
         0 0 10px rgba(255,255,255,0.16),
         0 0 30px rgba(141,91,255,0.42);
+    }
+
+    .title-line {
+      display: block;
+      white-space: nowrap;
     }
 
     .hero-title-en {
@@ -710,10 +717,8 @@
       }
 
       .hero-title-main {
-        font-size: clamp(2.15rem, 8vw, 3.4rem);
-        white-space: nowrap !important;
-        width: max-content;
-        max-width: 100%;
+        font-size: clamp(2.35rem, 8vw, 3.4rem);
+        letter-spacing: 0.06em;
       }
 
       .modal-visual img {
@@ -763,11 +768,8 @@
       }
 
       .hero-title-main {
-        font-size: clamp(1.75rem, 9.2vw, 2.65rem);
-        letter-spacing: 0;
-        white-space: nowrap !important;
-        width: max-content;
-        max-width: 100%;
+        font-size: clamp(2.1rem, 10vw, 2.85rem);
+        letter-spacing: 0.05em;
       }
 
       .hero-title-en {
@@ -843,9 +845,8 @@
 
     @media (max-width: 380px) {
       .hero-title-main {
-        font-size: clamp(1.55rem, 9.5vw, 2.1rem);
-        letter-spacing: -0.02em;
-        white-space: nowrap !important;
+        font-size: clamp(1.9rem, 9.8vw, 2.35rem);
+        letter-spacing: 0.03em;
       }
 
       .hero-title-en {
@@ -877,7 +878,10 @@
           <div class="eyebrow">人外アパート204号室</div>
           <p class="hero-kicker">Official Character Story Site</p>
           <h1>
-            <span class="hero-title-main">パフネスルミナス</span>
+            <span class="hero-title-main">
+              <span class="title-line">パフネス</span>
+              <span class="title-line">ルミナス</span>
+            </span>
             <span class="hero-title-en">PAHUNESU URUMINASU</span>
             <span class="hero-title-sub">人外アパート204号室</span>
           </h1>
