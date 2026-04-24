@@ -170,7 +170,7 @@
       display: block;
       width: fit-content;
       max-width: 100%;
-      font-family: "Yu Mincho", "Hiragino Mincho ProN", "Yu Gothic", serif;
+      font-family: "Segoe UI", "Hiragino Kaku Gothic ProN", "Yu Gothic", sans-serif;
       font-size: clamp(2.55rem, 4.2vw, 4.05rem);
       letter-spacing: 0.08em;
       font-weight: 900;
@@ -186,6 +186,10 @@
     .title-line {
       display: block;
       white-space: nowrap;
+    }
+
+    .title-line + .title-line {
+      margin-top: 8px;
     }
 
     .hero-title-en {
@@ -704,7 +708,6 @@
 
       .hero-visual {
         min-height: auto;
-        order: -1;
       }
 
       .hero-card {
@@ -768,8 +771,17 @@
       }
 
       .hero-title-main {
-        font-size: clamp(2.1rem, 10vw, 2.85rem);
-        letter-spacing: 0.05em;
+        font-size: clamp(1.9rem, 8.2vw, 2.55rem);
+        letter-spacing: 0.01em;
+        line-height: 1.05;
+      }
+
+      .title-line {
+        display: inline;
+      }
+
+      .title-line + .title-line {
+        margin-top: 0;
       }
 
       .hero-title-en {
